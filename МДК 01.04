@@ -1,0 +1,50 @@
+import random
+
+def process_sentence(sentence):
+    # 1) Проверка на минимум 4 слова
+    words = sentence.split()
+    if len(words) < 4:
+        return "Ошибка: нужно минимум 4 слова"
+    
+    # Русские буквы для замены
+    russian_letters = ['а', 'б', 'в', 'г', 'д', 'е', 'ё', 'ж', 'з', 'и', 
+                       'й', 'к', 'л', 'м', 'н', 'о', 'п', 'р', 'с', 'т', 
+                       'у', 'ф', 'х', 'ц', 'ч', 'ш', 'щ', 'ъ', 'ы', 'ь', 'э', 'ю', 'я']
+    
+    result = []
+    
+    # 2) Обработка каждого слова
+    for word in words:
+        # Проверяем, является ли слово числом от 1 до 5
+        if word.isdigit() and 1 <= int(word) <= 5:
+            # Заменяем на случайные русские буквы
+            replacement = ''.join(random.choice(russian_letters) for _ in range(int(word)))
+            result.append(replacement)
+        else:
+            # Подстригаем слово до длины исходного слова
+            result.append(word[:len(word)])
+    
+    # Создаем квадратный массив
+    n = int(len(result) ** 0.5)
+    if n * n < len(result):
+        n += 1
+    
+    square_array = []
+    index = 0
+    for i in range(n):
+        row = []
+        for j in range(n):
+            if index < len(result):
+                row.append(result[index])
+            else:
+                row.append('0')  # Добавляем нули
+            index += 1
+        square_array.append(row)
+    
+    return square_array
+
+# Пример использования
+sentence = "привет 3 мир 5 как 2 дела"
+result = process_sentence(sentence)
+for row in result:
+    print(row)
