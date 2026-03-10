@@ -1,0 +1,55 @@
+import numpy as np
+
+class Pogoda:
+    def __init__(self, gorod): # функция __init__вызывается автоматически, когда мы создаем новый объект.
+        self.gorod = gorod
+        self.dni = 7
+        self.temp = np.zeros(7)
+        self.vlazhnost = np.zeros(7) # np.zeros() - создает массив из семи нулей. [0., 0., 0.],
+        self.davlenie = np.zeros(7)  #                                            [0., 0., 0.],
+        self.veter = np.zeros(7)     #                                            [0., 0., 0.],
+
+    def vvod_dannx(self): # создаем функцию внутри класса
+        print(f"\nВведите погоду для города {self.gorod} на 7 дней:")
+        for den in range(7): # цикл на 7 дней , для каждого дня берем из массивов данные и печатаем их
+            print(f"\n--- День {den + 1} ---") # счет начинается с 0, люди считают с 1. Когда den = 0, печатаем "день1"
+            self.temp[den] = float(input("Температура (°C): ")) # float() - превращает текст в число с десятичной точкой. ввел "15", float превратит это в 15.0
+            self.vlazhnost[den] = float(input("Влажность (%): ")) # self.temp[den] - берем наш массив температур и в ячейку с номером den кладем то число, которое ввел пользователь
+            self.davlenie[den] = float(input("Давление (мм рт.ст.): "))
+            self.veter[den] = float(input("Скорость ветра (м/с): "))
+
+    def analiz(self): #
+        print(f"\n{'=' * 40}")
+        print("АНАЛИЗ ПОГОДЫ ЗА НЕДЕЛЮ")
+        print(f"{'=' * 40}")
+
+        print("\nТемпература:")
+        print(f"  Макс: {np.max(self.temp)}°C") # находит максимальную температуру
+        print(f"  Мин: {np.min(self.temp)}°C") # находит минимальную температуру
+        print(f"  Средняя: {np.mean(self.temp):.1f}°C") # np.mean() - складывает все температуры и делит на 7 (арифметика)
+
+        print("\nВлажность:")
+        print(f"  Макс: {np.max(self.vlazhnost)}%")
+        print(f"  Мин: {np.min(self.vlazhnost)}%")
+        print(f"  Средняя: {np.mean(self.vlazhnost):.1f}%")  # :.1f - показывает число с одним знаком после запятой
+
+        print("\nДавление:")
+        print(f"  Макс: {np.max(self.davlenie)} мм рт.ст.")
+        print(f"  Мин: {np.min(self.davlenie)} мм рт.ст.")
+        print(f"  Среднее: {np.mean(self.davlenie):.1f} мм рт.ст.")
+
+        print("\nВетер:")
+        print(f"  Макс: {np.max(self.veter)} м/с")
+        print(f"  Мин: {np.min(self.veter)} м/с")
+        print(f"  Средний: {np.mean(self.veter):.1f} м/с")
+
+
+# и сама программа)
+print("ПРОГНОЗ ПОГОДЫ")
+print("=" * 40)
+
+gorod = input("Введите название города: ")
+
+moia_pogoda = Pogoda(gorod) # вызываем класс как функцию, передаем ему название города, например нашу Шумерлю
+moia_pogoda.vvod_dannx() # программа начнет спрашивать погоду на каждый день и заполнять массивы (у нашего обьекта)
+moia_pogoda.analiz() # анализируем и показываем статистику
