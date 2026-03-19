@@ -1,0 +1,26 @@
+# из десятичной в двоичную
+
+num = int(input("Число: "))
+ostatok = []
+
+while num > 0:
+    ostatok.append(num % 2) # целочисленное деление
+    num = num // 2 # деление с отбрасыванием дробной части
+
+ostatok.reverse() # переворачивает список задом наперед
+print("Результат:", ''.join(map(str, ostatok)))
+
+
+
+# из двоичной в десятичную
+
+num = input("Двоичное число: ")
+decetichnoe = 0
+stepen = 0
+
+# Идем по цифрам справа налево
+for i in reversed(num):
+    decetichnoe += int(i) * (2 ** stepen)
+    stepen += 1
+
+print("Десятичное число:", decetichnoe)
