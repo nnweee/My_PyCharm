@@ -1,0 +1,28 @@
+import matplotlib.pyplot as plt
+import numpy as np
+
+x1 = np.linspace(-4, -0.01, 200)  #от -4 до -0.01
+x2 = np.linspace(0.01, 4, 200)  #от 0.01 до 4
+
+y1 = 1 / x1
+y2 = 1 / x2
+
+#plt.figure(figsize=(8, 6))     
+
+plt.plot(x1, y1, color='blue', linewidth=2, label='y = 1/x') #сами линии
+plt.plot(x2, y2, color='blue', linewidth=2)
+
+plt.axhline(0, color='black', linewidth=0.5) #горизонталь
+plt.axvline(0, color='black', linewidth=0.5) #вертикаль
+
+
+plt.xlim(-4, 4) #показ графика именно по указанным точкам
+plt.ylim(-4, 4)
+
+plt.grid(True, linestyle='--', alpha=0.6) #сетка
+plt.title('Гипербола', fontsize=14) # легенда
+plt.xlabel('x', fontsize=12)
+plt.ylabel('y', fontsize=12)
+plt.legend()
+
+plt.show()
