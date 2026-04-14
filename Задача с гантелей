@@ -1,0 +1,46 @@
+import matplotlib.pyplot as plt
+import numpy as np
+import math
+
+# --- Дано ---
+v_kmh = 20                     # скорость в км/ч
+angle_deg = 30                 # угол в градусах
+g = 9.81                       # ускорение свободного падения
+
+# --- Перевод в СИ ---
+v0 = v_kmh * 1000 / 3600       # переводим км/ч в м/с
+angle_rad = math.radians(angle_deg) # переводим градусы в радианы
+
+# --- Разложение скорости на составляющие ---
+vx = v0 * math.cos(angle_rad)  # горизонтальная скорость (постоянная)
+vy = v0 * math.sin(angle_rad)  # вертикальная скорость (начальная)
+
+# --- Время полета и дальность ---
+t_total = 2 * vy / g           # время, когда тело упадет на землю (y=0)
+distance = vx * t_total        # дальность полета
+
+print(f"Гиря улетит на расстояние: {distance:.2f} метров")
+
+# --- Создаем точки для графика ---
+# Берем 50 точек от 0 до полного времени полета
+t = np.linspace(0, t_total, 50)
+
+# Уравнения движения:
+x = vx * t                     # x = Vx * t
+y = vy * t - (g * t**2) / 2    # y = Vy*t - g*t^2/2
+
+# --- Рисуем ---
+plt.figure(figsize=(8, 5))
+plt.plot(x, y, 'b-o', linewidth=2, markersize=3) # синяя линия с точками
+
+# Оформление
+plt.title(f'Траектория гири (угол {angle_deg}°, скорость {v_kmh} км/ч)')
+plt.xlabel('Расстояние, м')
+plt.ylabel('Высота, м')
+plt.grid(True, linestyle='--', alpha=0.7)
+
+# Показываем график так, чтобы видеть всю траекторию и немного земли снизу
+plt.ylim(bottom=-0.5)
+plt.xlim(left=0)
+
+plt.show()
