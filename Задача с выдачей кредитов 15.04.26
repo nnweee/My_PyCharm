@@ -1,0 +1,31 @@
+# import pandas as pd
+# import numpy as np
+#
+# my_money = 10000
+#
+# df_clients = pd.DataFrame({
+#     'Кредит': ['Телефон', 'Машина', 'Бизнес'],
+#     'Сумма': [20000, 2000000, 20000000],
+#     'Ставка': [15, 20, 25]
+# })
+#
+# centralni_bank = 22020000
+# centralni_bank_procent = 15
+#
+# df_clients['Доход_год'] = df_clients['Сумма'] * df_clients['Ставка'] / 100
+# clients_income = df_clients['Доход_год'].sum()
+# bank_expense = centralni_bank * centralni_bank_procent / 100
+# year_profit = clients_income - bank_expense
+# month_profit = year_profit / 12
+#
+# print(f"Наш капитал: {my_money} руб.")
+# print(df_clients)
+# print(f"\nГодовая прибыль: {year_profit:,.2f} руб.")
+# print(f"Ежемесячная прибыль: {month_profit:,.2f} руб.")
+# print(f"Итого с нашими деньгами: {year_profit + my_money:,.2f} руб.")
+#
+# months = pd.DataFrame({
+#     'Месяц': np.arange(1, 13),
+#     'Прибыль': [month_profit] * 12
+# })
+# print(f"\nПомесячно:\n{months.to_string(index=False, float_format='{:,.2f}'.format)}")
