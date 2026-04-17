@@ -1,0 +1,52 @@
+import matplotlib.pyplot as plt
+import numpy as np
+
+#[цена_открытия, цена_закрытия]
+data = [
+    [48.5, 49.1],  #день 1
+    [49.1, 48.9],  
+    [48.9, 49.2],  
+    [49.2, 49.6],  
+    [49.6, 49.3],  #день 5
+    [49.3, 49.5],  
+    [49.5, 50.0],  
+    [50.0, 49.7],  
+    [49.7, 49.9],  
+    [49.9, 50.1],  #день 10
+]
+
+#список дней
+days = list(range(1, 11))
+
+#считаем изменение цены (для какждого дня)
+izmenenye = []
+colors = []
+
+for i in range(10):
+    open_price = data[i][0]
+    close_price = data[i][1]
+    change = close_price - open_price  # изменение цены за день
+    izmenenye.append(change)
+
+    #цена выросла = зеленый,упала = красный
+    if change >= 0:
+        colors.append('green')
+    else:
+        colors.append('red')
+
+#гистограмма
+plt.figure()
+plt.bar(days, izmenenye, color=colors, edgecolor='black')
+
+#линию на 0
+plt.axhline(y=0, color='black', linewidth=1)
+
+
+plt.title('Сургутнефтегаз - Покупатели (зеленый) vs Продавцы (красный)', fontsize=14)
+plt.xlabel('Дни торгов', fontsize=12)
+plt.ylabel('Изменение цены (рубли)', fontsize=12)
+
+#сетка
+plt.grid(True, alpha=0.3, axis='y')
+
+plt.show()
