@@ -1,0 +1,8 @@
+import matplotlib.pyplot as plt
+
+oblostia = ["Чуваш. Респуб.","Респуб. Татарстан","Нижегород. обл.","Респуб. Марий Эл","Ульянов. обл.","Респуб. Мордовия"]
+naselenie = [1204000,4019606,3038000,669854,1150000,758895]
+explode = (0.2,0,0,0,0,0)
+
+plt.pie(naselenie, labels = oblostia, autopct="%1.1f%%", explode=explode)
+plt.show()
