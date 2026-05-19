@@ -1,0 +1,25 @@
+import time
+import calendar
+import statistics
+
+print("моудль: time")
+print("на данный момент:",time.strftime("%H:%M:%S"))
+time.sleep(5)
+# print("=============================")
+print("прошло 5 секунд")
+print("==============================")
+#-----------------------------------------------------------
+
+print("\n модуль: calendar")
+print("календарь на декабрь 2026:")
+calendar.prmonth(2026, 12)
+print("=============================")
+
+#-----------------------------------------------------------
+
+print("\n модуль: statistics")
+GOO = [3, 5, 4, 5, 5, 4, 3, 5]
+print(f"все оценки: {GOO}")
+print(f"среднее: {statistics.mean(GOO)}")
+print(f"медиана: {statistics.median(GOO)}")
+print("=============================")
