@@ -1,0 +1,40 @@
+import random
+import matplotlib.pyplot as plt
+
+class Visuall:
+    """Модульный класс с 3-мя методами"""
+
+    def histogram(self):
+        """1-гистограмма"""
+        data = [random.gauss(0, 1) for _ in range(500)]
+        plt.hist(data, bins=20, color='skyblue')
+        plt.title('Гистограмма')
+        plt.show()
+
+    def Map(self):
+        """2-тепловая карта"""
+        matrix = [[random.random() for _ in range(20)] for _ in range(20)]
+        plt.imshow(matrix, cmap='hot')
+        plt.colorbar()
+        plt.title('Тепловая карта')
+        plt.show()
+
+    def line(self):
+        """3-линейный график"""
+        x = [1, 2, 3, 4, 5]
+        y1 = [1, 4, 2, 5, 3]
+        y2 = [2, 3, 4, 3, 4]
+        plt.plot(x, y1, 'o-', label='Линия 1')
+        plt.plot(x, y2, 's-', label='Линия 2')
+        plt.legend()
+        plt.title('Линейный график')
+        plt.show()
+
+    # Проверка
+
+
+if __name__ == "__main__":
+    viz = Visuall()
+    viz.histogram()
+    viz.Map()
+    viz.line()
