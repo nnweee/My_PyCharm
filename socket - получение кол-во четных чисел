@@ -1,0 +1,73 @@
+#сервер
+import socket
+
+def main():
+    #создание сокета
+    server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+
+    #привязка
+    server_socket.bind(("localhost", 6767))
+
+    #слушает(макс 1 клиент в очереди)
+    server_socket.listen(1)
+    print("Сервер запущен,ожидаю подключения клиента... ")
+
+    #принятие подключения клиента
+    client_socket, address = server_socket.accept()
+    print(f"Клиент подключился: {address}")
+
+    #получение данных от клиента
+    data = client_socket.recv(1024).decode()  # 1024 — макс. размер, decode — превращаем байты в строку
+    print(f"Получено: {data}")
+
+    #обрабатка
+    chisla = list(map(int, data.split()))
+    kolichestvo_chetnyh = 0
+    for chislo in chisla:
+        if chislo % 2 == 0:
+            kolichestvo_chetnyh += 1
+
+    #отправка результата клиенту
+    client_socket.send(str(kolichestvo_chetnyh).encode())  # encode — превращаем строку в байты
+
+    #закрытие
+    client_socket.close()
+    server_socket.close()
+    print("Работа завершена")
+
+
+if __name__ == "__main__":
+    main()
+
+
+#========================================================================================================================================================================================
+#========================================================================================================================================================================================
+
+#клиент
+import socket
+
+
+def main():
+    client_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+
+    client_socket.connect(("localhost", 6767))
+    print("Подключено к серверу")
+
+    vvod = input("Введите числа через пробел: ")
+
+    #отправка данных на сервер
+    client_socket.send(vvod.encode())
+
+    #получение ответа от сервера
+    otvet = client_socket.recv(1024).decode()
+
+    print(f"Количество чётных чисел: {otvet}")
+
+    #закрытие соединения
+    client_socket.close()
+
+
+if __name__ == "__main__":
+    main()
+
+
