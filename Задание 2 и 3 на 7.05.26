@@ -42,3 +42,24 @@ for curr in numbers[1:]:
     prev = curr
 
 print(cc)
+
+# ЗАДАНИЕ 4 НА 7.05.26 ПО СИСТЕМНОМУ ПРОГРАМИРОВАНИЮ (на 13.05.26)
+#
+#
+# n, k, m = map(int, input().split())
+#
+# digits = [(8,2,0),(7,1,0),(6,0,1),(5,1,0),(4,0,0),(3,0,1),(2,1,0),(1,0,0),(0,0,0)]
+#
+# res = []
+# for pos in range(n):
+#     for d, two, zero in digits:
+#         if pos == n-1 and d % 2 != 0:
+#             continue
+#         if two <= k and zero <= m:
+#             if (n-pos-1)*2 >= k-two and (n-pos-1) >= m-zero:
+#                 res.append(d)
+#                 k -= two
+#                 m -= zero
+#                 break
+#
+# print(''.join(map(str, res)))
